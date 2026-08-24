@@ -82,15 +82,12 @@ export const MoonCalendarCard = ({ compact = false }: { compact?: boolean }) => 
               to={`/lua/${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(
                 d.getDate(),
               ).padStart(2, "0")}`}
-              className={({ isActive }) =>
-                `flex flex-col items-center rounded-lg py-1.5 transition-colors hover:bg-primary/10 ${
-                  isActive
-                    ? "bg-accent/20 ring-1 ring-accent"
-                    : d.toDateString() === today.toDateString()
-                      ? "bg-primary/10 ring-1 ring-primary/40"
-                      : ""
-                }`
-              }
+              className={`flex flex-col items-center rounded-lg py-1.5 transition-colors hover:bg-primary/10 ${
+                d.toDateString() === today.toDateString()
+                  ? "bg-primary/10 ring-1 ring-primary/40"
+                  : ""
+              }`}
+              activeClassName="bg-accent/20 ring-1 ring-accent"
             >
               <MoonDisc date={d} size={size} />
               <span className="text-[11px] text-muted-foreground mt-0.5">{d.getDate()}</span>
