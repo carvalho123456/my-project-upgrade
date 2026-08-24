@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { NavLink } from "react-router-dom";
+import { NavLink } from "@/lib/router-compat";
 import { Moon } from "lucide-react";
 import {
   moonPhase,

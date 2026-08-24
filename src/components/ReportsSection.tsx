@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/router-compat";
 import { MessageSquarePlus, Loader2, ShieldCheck, MapPin, Clock, UserRound } from "lucide-react";
 import { z } from "zod";
 import { toast } from "sonner";

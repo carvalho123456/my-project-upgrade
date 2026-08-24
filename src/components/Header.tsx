@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { CloudRain, Sun, Cloud, Leaf, Moon, Menu, X } from "lucide-react";
 import WeatherBadge from "./WeatherBadge";
 import UserMenu from "./UserMenu";
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/router-compat";
 import { useWeatherTheme, WeatherTheme } from "@/contexts/WeatherTheme";
 
 const navItems = [

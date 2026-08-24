@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/router-compat";
 import { Thermometer, Droplets, Wind, Umbrella, Sunrise, Sunset } from "lucide-react";
 import { useForecast } from "@/hooks/useForecast";
 import { codeLabel, formatDay, formatHour } from "@/lib/weather";

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/router-compat";
 import { LogIn, LogOut, UserRound } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 
