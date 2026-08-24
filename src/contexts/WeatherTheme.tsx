@@ -51,12 +51,14 @@ export const WeatherThemeProvider = ({ children }: { children: ReactNode }) => {
   const [autoLabel, setAutoLabel] = useState<string>("Carregando clima...");
   const [temperature, setTemperature] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
-  const [override, setOverrideState] = useState<WeatherTheme | null>(() => {
-    const v = typeof window !== "undefined" ? localStorage.getItem("weather-override") : null;
-    return v === "rainy" || v === "sunny" || v === "cloudy" || v === "pleasant" || v === "night"
-      ? (v as WeatherTheme)
-      : null;
-  });
+  const [override, setOverrideState] = useState<WeatherTheme | null>(null);
+
+  useEffect(() => {
+    const v = localStorage.getItem("weather-override");
+    if (v === "rainy" || v === "sunny" || v === "cloudy" || v === "pleasant" || v === "night") {
+      setOverrideState(v as WeatherTheme);
+    }
+  }, []);
 
   const setOverride = (t: WeatherTheme | null) => {
     setOverrideState(t);
