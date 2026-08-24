@@ -126,8 +126,71 @@ const HourlyCharts = ({ dayIso, bare = false }: Props) => {
     );
   };
 
+  const list = (
+    <div className="flex gap-3 overflow-x-auto pb-2">
+      {source?.time.map((t, i) => {
+        const hour = Number(t.slice(11, 13));
+        const Icon = weatherIcon(source.code[i], hour);
+        return (
+          <div
+            key={t}
+            className="min-w-[140px] rounded-xl bg-muted/40 border border-border p-4 shrink-0"
+          >
+            <p className="text-sm text-muted-foreground mb-1">{formatHour(t)}</p>
+            <div className="flex items-center justify-between mb-3">
+              <span className="font-heading text-2xl font-bold text-foreground">
+                {Math.round(source.temperature[i])}°C
+              </span>
+              <Icon className="h-7 w-7 text-primary" />
+            </div>
+            <p className="flex items-center gap-1.5 text-xs text-muted-foreground">
+              <Droplets className="h-3.5 w-3.5" /> {Math.round(source.humidity?.[i] ?? 0)}%
+            </p>
+            <p className="flex items-center gap-1.5 text-xs text-muted-foreground mt-1">
+              <CloudRain className="h-3.5 w-3.5" /> {(source.precipitation[i] ?? 0).toFixed(1)}mm
+            </p>
+            <p className="flex items-center gap-1.5 text-xs text-muted-foreground mt-1">
+              <Wind className="h-3.5 w-3.5" /> {Math.round(source.wind[i])} km/h
+            </p>
+          </div>
+        );
+      })}
+    </div>
+  );
+
   const card = (
     <div className="rounded-2xl bg-card border border-border shadow-card p-4 sm:p-6 h-full flex flex-col">
+      <div className="flex justify-end mb-4">
+        <div className="inline-flex rounded-lg border border-border bg-muted/40 p-1">
+          {([
+            { key: "chart", label: "Gráfico", Icon: LineChart },
+            { key: "list", label: "Lista", Icon: LayoutList },
+          ] as const).map(({ key, label, Icon }) => (
+            <button
+              key={key}
+              onClick={() => setView(key)}
+              className={cn(
+                "flex items-center gap-2 rounded-md px-3 py-1.5 text-sm font-medium transition-colors",
+                view === key
+                  ? "bg-card text-foreground shadow-card"
+                  : "text-muted-foreground hover:text-foreground",
+              )}
+            >
+              <Icon className="h-4 w-4" />
+              {label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {view === "list" ? (
+        isLoading ? (
+          <div className="flex-1 min-h-[12rem] rounded-xl bg-muted animate-pulse" />
+        ) : (
+          list
+        )
+      ) : (
+      <>
       <div className="flex flex-wrap gap-2 justify-center mb-6">
         {METRICS.map(({ key, label, Icon }) => (
           <button
