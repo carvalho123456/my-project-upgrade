@@ -1,6 +1,21 @@
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Thermometer, CloudRain, Wind, Droplets } from "lucide-react";
+import {
+  Thermometer,
+  CloudRain,
+  Wind,
+  Droplets,
+  LineChart,
+  LayoutList,
+  Sun,
+  Moon,
+  Cloud,
+  CloudSun,
+  CloudDrizzle,
+  CloudSnow,
+  CloudLightning,
+  CloudFog,
+} from "lucide-react";
 import {
   Area,
   AreaChart,
