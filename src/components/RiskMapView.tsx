@@ -49,7 +49,7 @@ const esc = (s: string) =>
     ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c] as string,
   );
 
-const RiskMapSection = () => {
+const RiskMapView = () => {
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstance = useRef<L.Map | null>(null);
   const layerRef = useRef<L.LayerGroup | null>(null);
@@ -179,4 +179,4 @@ const RiskMapSection = () => {
   );
 };
 
-export default RiskMapSection;
+export default RiskMapView;
