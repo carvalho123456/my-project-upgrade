@@ -256,6 +256,8 @@ const HourlyCharts = ({ dayIso, bare = false }: Props) => {
           </ResponsiveContainer>
         </div>
       )}
+      </>
+      )}
     </div>
   );
 
