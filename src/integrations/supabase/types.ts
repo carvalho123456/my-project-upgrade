@@ -14,16 +14,235 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      profiles: {
+        Row: {
+          created_at: string
+          display_name: string | null
+          id: string
+          neighborhood: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          display_name?: string | null
+          id: string
+          neighborhood?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          display_name?: string | null
+          id?: string
+          neighborhood?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      reports: {
+        Row: {
+          created_at: string
+          description: string
+          hazard: Database["public"]["Enums"]["hazard_type"]
+          id: string
+          lat: number | null
+          lng: number | null
+          neighborhood: string
+          occurred_at: string
+          photo_url: string | null
+          severity: number
+          status: Database["public"]["Enums"]["report_status"]
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          description: string
+          hazard: Database["public"]["Enums"]["hazard_type"]
+          id?: string
+          lat?: number | null
+          lng?: number | null
+          neighborhood: string
+          occurred_at?: string
+          photo_url?: string | null
+          severity?: number
+          status?: Database["public"]["Enums"]["report_status"]
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          hazard?: Database["public"]["Enums"]["hazard_type"]
+          id?: string
+          lat?: number | null
+          lng?: number | null
+          neighborhood?: string
+          occurred_at?: string
+          photo_url?: string | null
+          severity?: number
+          status?: Database["public"]["Enums"]["report_status"]
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      risk_zones: {
+        Row: {
+          created_at: string
+          description: string | null
+          hazard: Database["public"]["Enums"]["hazard_type"]
+          id: string
+          lat: number
+          lng: number
+          name: string
+          radius_m: number
+          risk_level: string
+          source: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          hazard: Database["public"]["Enums"]["hazard_type"]
+          id?: string
+          lat: number
+          lng: number
+          name: string
+          radius_m?: number
+          risk_level?: string
+          source?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          hazard?: Database["public"]["Enums"]["hazard_type"]
+          id?: string
+          lat?: number
+          lng?: number
+          name?: string
+          radius_m?: number
+          risk_level?: string
+          source?: string
+        }
+        Relationships: []
+      }
+      timeline_events: {
+        Row: {
+          created_at: string
+          event_date: string
+          hazard: Database["public"]["Enums"]["hazard_type"] | null
+          id: string
+          image_url: string | null
+          source_url: string | null
+          summary: string
+          title: string
+          video_url: string | null
+        }
+        Insert: {
+          created_at?: string
+          event_date: string
+          hazard?: Database["public"]["Enums"]["hazard_type"] | null
+          id?: string
+          image_url?: string | null
+          source_url?: string | null
+          summary: string
+          title: string
+          video_url?: string | null
+        }
+        Update: {
+          created_at?: string
+          event_date?: string
+          hazard?: Database["public"]["Enums"]["hazard_type"] | null
+          id?: string
+          image_url?: string | null
+          source_url?: string | null
+          summary?: string
+          title?: string
+          video_url?: string | null
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
-      [_ in never]: never
+      public_reports: {
+        Row: {
+          created_at: string | null
+          description: string | null
+          hazard: Database["public"]["Enums"]["hazard_type"] | null
+          id: string | null
+          lat: number | null
+          lng: number | null
+          neighborhood: string | null
+          occurred_at: string | null
+          photo_url: string | null
+          severity: number | null
+        }
+        Insert: {
+          created_at?: string | null
+          description?: string | null
+          hazard?: Database["public"]["Enums"]["hazard_type"] | null
+          id?: string | null
+          lat?: number | null
+          lng?: number | null
+          neighborhood?: string | null
+          occurred_at?: string | null
+          photo_url?: string | null
+          severity?: number | null
+        }
+        Update: {
+          created_at?: string | null
+          description?: string | null
+          hazard?: Database["public"]["Enums"]["hazard_type"] | null
+          id?: string | null
+          lat?: number | null
+          lng?: number | null
+          neighborhood?: string | null
+          occurred_at?: string | null
+          photo_url?: string | null
+          severity?: number | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
+      is_moderator: { Args: { _user_id: string }; Returns: boolean }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "moderator" | "user"
+      hazard_type:
+        | "alagamento"
+        | "deslizamento"
+        | "vendaval"
+        | "ressaca"
+        | "outro"
+      report_status: "pendente" | "aprovado" | "rejeitado"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +369,16 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "moderator", "user"],
+      hazard_type: [
+        "alagamento",
+        "deslizamento",
+        "vendaval",
+        "ressaca",
+        "outro",
+      ],
+      report_status: ["pendente", "aprovado", "rejeitado"],
+    },
   },
 } as const
