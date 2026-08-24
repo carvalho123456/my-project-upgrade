@@ -68,6 +68,7 @@ interface Props {
 const HourlyCharts = ({ dayIso, bare = false }: Props) => {
   const { data, isLoading } = useForecast();
   const [metric, setMetric] = useState<MetricKey>("temp");
+  const [view, setView] = useState<"chart" | "list">("list");
 
   const active = METRICS.find((m) => m.key === metric)!;
   const chartRef = useRef<HTMLDivElement>(null);
