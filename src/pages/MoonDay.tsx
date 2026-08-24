@@ -1,4 +1,5 @@
-import { Link, useParams } from "@/lib/router-compat";
+import { Link } from "@/lib/router-compat";
+import { useParams } from "@tanstack/react-router";
 import { ArrowLeft, Moon as MoonIcon, Compass, Waves, Anchor, Sparkles } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -96,7 +97,7 @@ const MoonArc = ({ date }: { date: Date }) => {
 };
 
 const MoonDay = () => {
-  const { date = "" } = useParams();
+  const { date = "" } = useParams({ strict: false }) as { date?: string };
   const valid = /^\d{4}-\d{2}-\d{2}$/.test(date);
   const day = valid ? new Date(`${date}T12:00:00`) : new Date();
   const illum = Math.round(moonIllumination(day) * 100);

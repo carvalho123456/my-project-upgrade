@@ -1,4 +1,5 @@
-import { Link, useParams } from "@/lib/router-compat";
+import { Link } from "@/lib/router-compat";
+import { useParams } from "@tanstack/react-router";
 import {
   ArrowLeft,
   Sunrise,
@@ -67,7 +68,7 @@ const SunArc = ({ sunrise, sunset }: { sunrise: string; sunset: string }) => {
 };
 
 const DayDetail = () => {
-  const { date = "" } = useParams();
+  const { date = "" } = useParams({ strict: false }) as { date?: string };
   const { data, isLoading } = useForecast();
 
   const idx = data?.daily.date.findIndex((d) => d === date) ?? -1;
