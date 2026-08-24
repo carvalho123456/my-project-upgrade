@@ -44,6 +44,20 @@ const METRICS: {
   { key: "humidity", label: "Umidade", Icon: Droplets, unit: "%", color: "hsl(var(--primary))" },
 ];
 
+const weatherIcon = (code: number, hour: number) => {
+  const night = hour < 6 || hour >= 18;
+  if (code === 0) return night ? Moon : Sun;
+  if (code <= 2) return night ? Moon : CloudSun;
+  if (code === 3) return Cloud;
+  if (code <= 48) return CloudFog;
+  if (code <= 57) return CloudDrizzle;
+  if (code <= 67) return CloudRain;
+  if (code <= 77) return CloudSnow;
+  if (code <= 82) return CloudRain;
+  if (code <= 86) return CloudSnow;
+  return CloudLightning;
+};
+
 interface Props {
   /** Data ISO (YYYY-MM-DD) para mostrar as 24h daquele dia. Sem isso, mostra as próximas 24h. */
   dayIso?: string;
