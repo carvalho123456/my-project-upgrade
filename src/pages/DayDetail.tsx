@@ -179,21 +179,16 @@ const DayDetail = () => {
               </div>
             </div>
 
-            <div className="grid gap-5 lg:grid-cols-[1.5fr_1fr] items-stretch">
-              <div className="flex flex-col">
-                <h2 className="font-heading text-xl font-bold text-foreground mb-3">
-                  Previsão hora a hora
-                </h2>
-                <div className="flex-1 flex">
-                  <div className="w-full">
-                    <HourlyCharts dayIso={date} bare />
-                  </div>
-                </div>
-              </div>
-              <div className="grid gap-5 content-start">
-                <SunArc sunrise={data!.daily.sunrise[idx]} sunset={data!.daily.sunset[idx]} />
-                <MoonCalendarCard compact />
-              </div>
+            <div className="mb-6">
+              <h2 className="font-heading text-xl font-bold text-foreground mb-3">
+                Previsão hora a hora em Caraguatatuba
+              </h2>
+              <HourlyCharts dayIso={date} bare />
+            </div>
+
+            <div className="grid gap-5 lg:grid-cols-2 items-start">
+              <SunArc sunrise={data!.daily.sunrise[idx]} sunset={data!.daily.sunset[idx]} />
+              <MoonCalendarCard compact />
             </div>
           </>
         )}
