@@ -67,15 +67,16 @@ const Header = () => {
 
         <nav className="hidden lg:flex items-center gap-5">
           {navItems.map((item) => (
-            <a
+            <Link
               key={item.href}
-              href={item.href}
+              to={item.href}
               className="text-sm font-medium text-ocean-pale hover:text-sky transition-colors"
             >
               {item.label}
-            </a>
+            </Link>
           ))}
         </nav>
+
 
         <div className="flex items-center gap-3">
           <div className="hidden sm:block">
@@ -99,17 +100,18 @@ const Header = () => {
           className="lg:hidden bg-ocean-deep/95 border-t border-ocean-mid/30 px-4 pb-4"
         >
           {navItems.map((item) => (
-            <a
+            <Link
               key={item.href}
-              href={item.href}
+              to={item.href}
               onClick={() => setOpen(false)}
               className="block py-2 text-sm text-ocean-pale hover:text-sky transition-colors"
             >
               {item.label}
-            </a>
+            </Link>
           ))}
         </motion.nav>
       )}
+
     </motion.header>
   );
 };
