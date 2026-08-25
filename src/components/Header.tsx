@@ -11,10 +11,12 @@ const navItems = [
   { label: "Previsão", href: "/#previsao" },
   { label: "Mapa de Riscos", href: "/#mapa" },
   { label: "Desastres", href: "/#desastres" },
+  { label: "El Niño / La Niña", href: "/el-nino-la-nina" },
   { label: "História", href: "/#historia" },
   { label: "Relatos", href: "/#relatos" },
   { label: "Prevenção", href: "/#prevencao" },
 ];
+
 
 const themeOrder: WeatherTheme[] = ["rainy", "cloudy", "pleasant", "sunny", "night"];
 
