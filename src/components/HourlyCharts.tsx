@@ -70,8 +70,10 @@ const HourlyCharts = ({ dayIso, bare = false }: Props) => {
   const [metric, setMetric] = useState<MetricKey>("temp");
   const [view, setView] = useState<"chart" | "list">("list");
 
-  const active = METRICS.find((m) => m.key === metric)!;
+  const active = METRICS.find((m) => m.key === metric) ?? METRICS[0];
   const chartRef = useRef<HTMLDivElement>(null);
+
+  if (!active) return null;
 
   const source = (() => {
     if (!data) return null;
@@ -212,8 +214,8 @@ const HourlyCharts = ({ dayIso, bare = false }: Props) => {
       {isLoading ? (
         <div className="flex-1 min-h-[18rem] rounded-xl bg-muted animate-pulse" />
       ) : (
-        <div className="flex-1 min-h-[18rem] w-full cursor-pointer [&_*]:cursor-pointer" ref={chartRef}>
-          <ResponsiveContainer width="100%" height="100%">
+        <div className="h-[320px] w-full cursor-pointer [&_*]:cursor-pointer" ref={chartRef}>
+          <ResponsiveContainer width="100%" height={320}>
             <AreaChart data={chartData} margin={{ top: 10, right: 12, left: 4, bottom: 0 }}>
               <defs>
                 <linearGradient id="metricFill" x1="0" y1="0" x2="0" y2="1">
