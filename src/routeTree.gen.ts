@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as ElNinoLaNinaRouteImport } from './routes/el-nino-la-nina'
 import { Route as ModeracaoRouteImport } from './routes/moderacao'
 import { Route as DiaDateRouteImport } from './routes/dia.$date'
 import { Route as LuaDateRouteImport } from './routes/lua.$date'
@@ -23,6 +24,11 @@ const IndexRoute = IndexRouteImport.update({
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
   path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ElNinoLaNinaRoute = ElNinoLaNinaRouteImport.update({
+  id: '/el-nino-la-nina',
+  path: '/el-nino-la-nina',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ModeracaoRoute = ModeracaoRouteImport.update({
@@ -44,6 +50,7 @@ const LuaDateRoute = LuaDateRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/el-nino-la-nina': typeof ElNinoLaNinaRoute
   '/moderacao': typeof ModeracaoRoute
   '/dia/$date': typeof DiaDateRoute
   '/lua/$date': typeof LuaDateRoute
@@ -51,6 +58,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/el-nino-la-nina': typeof ElNinoLaNinaRoute
   '/moderacao': typeof ModeracaoRoute
   '/dia/$date': typeof DiaDateRoute
   '/lua/$date': typeof LuaDateRoute
@@ -59,21 +67,42 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/el-nino-la-nina': typeof ElNinoLaNinaRoute
   '/moderacao': typeof ModeracaoRoute
   '/dia/$date': typeof DiaDateRoute
   '/lua/$date': typeof LuaDateRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/moderacao' | '/dia/$date' | '/lua/$date'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/el-nino-la-nina'
+    | '/moderacao'
+    | '/dia/$date'
+    | '/lua/$date'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/moderacao' | '/dia/$date' | '/lua/$date'
-  id: '__root__' | '/' | '/auth' | '/moderacao' | '/dia/$date' | '/lua/$date'
+  to:
+    | '/'
+    | '/auth'
+    | '/el-nino-la-nina'
+    | '/moderacao'
+    | '/dia/$date'
+    | '/lua/$date'
+  id:
+    | '__root__'
+    | '/'
+    | '/auth'
+    | '/el-nino-la-nina'
+    | '/moderacao'
+    | '/dia/$date'
+    | '/lua/$date'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthRoute: typeof AuthRoute
+  ElNinoLaNinaRoute: typeof ElNinoLaNinaRoute
   ModeracaoRoute: typeof ModeracaoRoute
   DiaDateRoute: typeof DiaDateRoute
   LuaDateRoute: typeof LuaDateRoute
@@ -93,6 +122,13 @@ declare module '@tanstack/react-router' {
       path: '/auth'
       fullPath: '/auth'
       preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/el-nino-la-nina': {
+      id: '/el-nino-la-nina'
+      path: '/el-nino-la-nina'
+      fullPath: '/el-nino-la-nina'
+      preLoaderRoute: typeof ElNinoLaNinaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/moderacao': {
@@ -122,6 +158,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthRoute: AuthRoute,
+  ElNinoLaNinaRoute: ElNinoLaNinaRoute,
   ModeracaoRoute: ModeracaoRoute,
   DiaDateRoute: DiaDateRoute,
   LuaDateRoute: LuaDateRoute,
