@@ -10,6 +10,7 @@ const navItems = [
   { label: "Início", href: "/#inicio" },
   { label: "Previsão", href: "/#previsao" },
   { label: "Mapa de Riscos", href: "/#mapa" },
+  { label: "Mapa Colaborativo", href: "/mapa-colaborativo" },
   { label: "Desastres", href: "/#desastres" },
   { label: "El Niño / La Niña", href: "/el-nino-la-nina" },
   { label: "História", href: "/#historia" },

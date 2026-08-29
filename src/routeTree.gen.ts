@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ElNinoLaNinaRouteImport } from './routes/el-nino-la-nina'
+import { Route as MapaColaborativoRouteImport } from './routes/mapa-colaborativo'
 import { Route as ModeracaoRouteImport } from './routes/moderacao'
 import { Route as DiaDateRouteImport } from './routes/dia.$date'
 import { Route as LuaDateRouteImport } from './routes/lua.$date'
@@ -29,6 +30,11 @@ const AuthRoute = AuthRouteImport.update({
 const ElNinoLaNinaRoute = ElNinoLaNinaRouteImport.update({
   id: '/el-nino-la-nina',
   path: '/el-nino-la-nina',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MapaColaborativoRoute = MapaColaborativoRouteImport.update({
+  id: '/mapa-colaborativo',
+  path: '/mapa-colaborativo',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ModeracaoRoute = ModeracaoRouteImport.update({
@@ -51,6 +57,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/el-nino-la-nina': typeof ElNinoLaNinaRoute
+  '/mapa-colaborativo': typeof MapaColaborativoRoute
   '/moderacao': typeof ModeracaoRoute
   '/dia/$date': typeof DiaDateRoute
   '/lua/$date': typeof LuaDateRoute
@@ -59,6 +66,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/el-nino-la-nina': typeof ElNinoLaNinaRoute
+  '/mapa-colaborativo': typeof MapaColaborativoRoute
   '/moderacao': typeof ModeracaoRoute
   '/dia/$date': typeof DiaDateRoute
   '/lua/$date': typeof LuaDateRoute
@@ -68,6 +76,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/el-nino-la-nina': typeof ElNinoLaNinaRoute
+  '/mapa-colaborativo': typeof MapaColaborativoRoute
   '/moderacao': typeof ModeracaoRoute
   '/dia/$date': typeof DiaDateRoute
   '/lua/$date': typeof LuaDateRoute
@@ -78,6 +87,7 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/el-nino-la-nina'
+    | '/mapa-colaborativo'
     | '/moderacao'
     | '/dia/$date'
     | '/lua/$date'
@@ -86,6 +96,7 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/el-nino-la-nina'
+    | '/mapa-colaborativo'
     | '/moderacao'
     | '/dia/$date'
     | '/lua/$date'
@@ -94,6 +105,7 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/el-nino-la-nina'
+    | '/mapa-colaborativo'
     | '/moderacao'
     | '/dia/$date'
     | '/lua/$date'
@@ -103,6 +115,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthRoute: typeof AuthRoute
   ElNinoLaNinaRoute: typeof ElNinoLaNinaRoute
+  MapaColaborativoRoute: typeof MapaColaborativoRoute
   ModeracaoRoute: typeof ModeracaoRoute
   DiaDateRoute: typeof DiaDateRoute
   LuaDateRoute: typeof LuaDateRoute
@@ -129,6 +142,13 @@ declare module '@tanstack/react-router' {
       path: '/el-nino-la-nina'
       fullPath: '/el-nino-la-nina'
       preLoaderRoute: typeof ElNinoLaNinaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mapa-colaborativo': {
+      id: '/mapa-colaborativo'
+      path: '/mapa-colaborativo'
+      fullPath: '/mapa-colaborativo'
+      preLoaderRoute: typeof MapaColaborativoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/moderacao': {
@@ -159,6 +179,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthRoute: AuthRoute,
   ElNinoLaNinaRoute: ElNinoLaNinaRoute,
+  MapaColaborativoRoute: MapaColaborativoRoute,
   ModeracaoRoute: ModeracaoRoute,
   DiaDateRoute: DiaDateRoute,
   LuaDateRoute: LuaDateRoute,
