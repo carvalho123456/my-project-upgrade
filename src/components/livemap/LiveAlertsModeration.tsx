@@ -28,7 +28,7 @@ const LiveAlertsModeration = () => {
 
   const hide = async (id: string) => {
     const { error } = await db.from("live_alerts").update({ status: "oculto" }).eq("id", id);
-    if (error) return toast.error("Não foi possível ocultar o alerta.");
+    if (error) { toast.error("Não foi possível ocultar o alerta."); return; }
     toast.success("Alerta ocultado do mapa.");
     refresh();
   };
@@ -38,14 +38,14 @@ const LiveAlertsModeration = () => {
       .from("live_alerts")
       .update({ status: "expirado", expires_at: new Date().toISOString() })
       .eq("id", id);
-    if (error) return toast.error("Não foi possível expirar o alerta.");
+    if (error) { toast.error("Não foi possível expirar o alerta."); return; }
     toast.success("Alerta expirado.");
     refresh();
   };
 
   const remove = async (id: string) => {
     const { error } = await db.from("live_alerts").delete().eq("id", id);
-    if (error) return toast.error("Não foi possível remover o alerta.");
+    if (error) { toast.error("Não foi possível remover o alerta."); return; }
     toast.success("Alerta removido.");
     refresh();
   };
