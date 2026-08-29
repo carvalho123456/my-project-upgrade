@@ -29,10 +29,10 @@ const ScrollToTop = () => {
           whileHover={{ scale: 1.12 }}
           whileTap={{ scale: 0.92 }}
           onClick={scrollToTop}
-          className="fixed bottom-6 left-6 z-50 h-14 w-14 rounded-full bg-white text-black flex items-center justify-center shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] border-2 border-black hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition"
+          className="fixed bottom-6 left-6 z-50 h-12 w-12 rounded-full bg-ocean-deep/40 backdrop-blur-md border border-ocean-pale/20 text-ocean-pale flex items-center justify-center shadow-elevated hover:bg-ocean-deep/60 hover:text-sky hover:border-sky/30 transition"
           aria-label="Voltar ao topo"
         >
-          <ChevronUp className="h-7 w-7 stroke-[2.5]" />
+          <ChevronUp className="h-6 w-6 stroke-[2.5]" />
         </motion.button>
       )}
     </AnimatePresence>
