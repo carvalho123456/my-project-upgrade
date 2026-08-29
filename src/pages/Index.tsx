@@ -6,6 +6,7 @@ import ForecastSection from "@/components/ForecastSection";
 
 import MoonSection from "@/components/MoonSection";
 import RiskMapSection from "@/components/RiskMapSection";
+import LiveMapTeaser from "@/components/livemap/LiveMapTeaser";
 import DisasterEducation from "@/components/DisasterEducation";
 import FloodSection from "@/components/FloodSection";
 import LandslideSection from "@/components/LandslideSection";
@@ -28,6 +29,7 @@ const Index = () => (
     <MoonSection />
 
     <RiskMapSection />
+    <LiveMapTeaser />
     <DisasterEducation />
     <FloodSection />
     <LandslideSection />
