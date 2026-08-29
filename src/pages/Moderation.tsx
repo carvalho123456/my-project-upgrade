@@ -1,9 +1,11 @@
+import { useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { Link } from "@/lib/router-compat";
 import { ArrowLeft, Check, X, Loader2, ShieldAlert } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
+import LiveAlertsModeration from "@/components/livemap/LiveAlertsModeration";
 
 const HAZARD_LABEL: Record<string, string> = {
   alagamento: "Alagamento",
