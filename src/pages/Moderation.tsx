@@ -18,6 +18,7 @@ const HAZARD_LABEL: Record<string, string> = {
 const Moderation = () => {
   const { user, loading } = useAuth();
   const qc = useQueryClient();
+  const [tab, setTab] = useState<"relatos" | "colaborativo">("relatos");
 
   const { data: isModerator } = useQuery({
     queryKey: ["is-moderator", user?.id],
@@ -73,6 +74,24 @@ const Moderation = () => {
           Moderação de relatos
         </h1>
 
+        {user && isModerator && (
+          <div className="mb-6 flex gap-2">
+            {(["relatos", "colaborativo"] as const).map((t) => (
+              <button
+                key={t}
+                onClick={() => setTab(t)}
+                className={`rounded-lg px-4 py-2 text-sm font-semibold transition ${
+                  tab === t
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-secondary text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {t === "relatos" ? "Relatos da comunidade" : "Mapa colaborativo"}
+              </button>
+            ))}
+          </div>
+        )}
+
         {!user || isModerator === false ? (
           <div className="rounded-xl border border-border bg-card p-8 text-center">
             <ShieldAlert className="mx-auto h-8 w-8 text-muted-foreground mb-3" />
@@ -80,6 +99,8 @@ const Moderation = () => {
               Esta área é restrita à equipe de moderação.
             </p>
           </div>
+        ) : tab === "colaborativo" ? (
+          <LiveAlertsModeration />
         ) : isLoading ? (
           <Loader2 className="h-6 w-6 animate-spin text-primary" />
         ) : (
