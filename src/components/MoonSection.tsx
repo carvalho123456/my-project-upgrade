@@ -71,9 +71,27 @@ export const MoonCalendarCard = ({ compact = false }: { compact?: boolean }) => 
         <p className="font-heading font-bold text-foreground flex items-center gap-2">
           <Moon className="h-4 w-4 text-primary" /> Calendário Lunar
         </p>
-        <p className="text-xs text-muted-foreground capitalize">
-          {today.toLocaleDateString("pt-BR", { month: "long", year: "numeric" })}
-        </p>
+        <div className="flex items-center gap-1">
+          <button
+            type="button"
+            onClick={() => shiftMonth(-1)}
+            aria-label="Mês anterior"
+            className="rounded-full p-1.5 text-muted-foreground transition-colors hover:bg-primary/10 hover:text-primary"
+          >
+            <ChevronLeft className="h-4 w-4" />
+          </button>
+          <p className="text-xs text-muted-foreground capitalize min-w-[110px] text-center">
+            {new Date(year, month, 1).toLocaleDateString("pt-BR", { month: "long", year: "numeric" })}
+          </p>
+          <button
+            type="button"
+            onClick={() => shiftMonth(1)}
+            aria-label="Próximo mês"
+            className="rounded-full p-1.5 text-muted-foreground transition-colors hover:bg-primary/10 hover:text-primary"
+          >
+            <ChevronRight className="h-4 w-4" />
+          </button>
+        </div>
       </div>
 
       <div className="grid grid-cols-7 gap-1 text-center">
