@@ -1,6 +1,7 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { NavLink } from "@/lib/router-compat";
-import { Moon } from "lucide-react";
+import { Moon, ChevronLeft, ChevronRight } from "lucide-react";
 import {
   moonPhase,
   moonIllumination,
@@ -45,8 +46,14 @@ const WEEK = ["Seg", "Ter", "Qua", "Qui", "Sex", "Sáb", "Dom"];
 /** Calendário lunar do mês corrente, em grade — usado na home e na tela do dia */
 export const MoonCalendarCard = ({ compact = false }: { compact?: boolean }) => {
   const today = new Date();
-  const year = today.getFullYear();
-  const month = today.getMonth();
+  const [view, setView] = useState({ year: today.getFullYear(), month: today.getMonth() });
+  const { year, month } = view;
+
+  const shiftMonth = (delta: number) =>
+    setView((v) => {
+      const d = new Date(v.year, v.month + delta, 1);
+      return { year: d.getFullYear(), month: d.getMonth() };
+    });
   const first = new Date(year, month, 1);
   const daysInMonth = new Date(year, month + 1, 0).getDate();
   // segunda = 0
