@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { NavLink } from "@/lib/router-compat";
-import { Moon, ChevronLeft, ChevronRight } from "lucide-react";
+import { Moon, ChevronLeft, ChevronRight, CalendarDays } from "lucide-react";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Button } from "@/components/ui/button";
 import {
   moonPhase,
   moonIllumination,
