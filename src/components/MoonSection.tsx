@@ -1,6 +1,7 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { NavLink } from "@/lib/router-compat";
-import { Moon } from "lucide-react";
+import { Moon, ChevronLeft, ChevronRight } from "lucide-react";
 import {
   moonPhase,
   moonIllumination,
@@ -45,8 +46,14 @@ const WEEK = ["Seg", "Ter", "Qua", "Qui", "Sex", "Sáb", "Dom"];
 /** Calendário lunar do mês corrente, em grade — usado na home e na tela do dia */
 export const MoonCalendarCard = ({ compact = false }: { compact?: boolean }) => {
   const today = new Date();
-  const year = today.getFullYear();
-  const month = today.getMonth();
+  const [view, setView] = useState({ year: today.getFullYear(), month: today.getMonth() });
+  const { year, month } = view;
+
+  const shiftMonth = (delta: number) =>
+    setView((v) => {
+      const d = new Date(v.year, v.month + delta, 1);
+      return { year: d.getFullYear(), month: d.getMonth() };
+    });
   const first = new Date(year, month, 1);
   const daysInMonth = new Date(year, month + 1, 0).getDate();
   // segunda = 0
@@ -64,9 +71,27 @@ export const MoonCalendarCard = ({ compact = false }: { compact?: boolean }) => 
         <p className="font-heading font-bold text-foreground flex items-center gap-2">
           <Moon className="h-4 w-4 text-primary" /> Calendário Lunar
         </p>
-        <p className="text-xs text-muted-foreground capitalize">
-          {today.toLocaleDateString("pt-BR", { month: "long", year: "numeric" })}
-        </p>
+        <div className="flex items-center gap-1">
+          <button
+            type="button"
+            onClick={() => shiftMonth(-1)}
+            aria-label="Mês anterior"
+            className="rounded-full p-1.5 text-muted-foreground transition-colors hover:bg-primary/10 hover:text-primary"
+          >
+            <ChevronLeft className="h-4 w-4" />
+          </button>
+          <p className="text-xs text-muted-foreground capitalize min-w-[110px] text-center">
+            {new Date(year, month, 1).toLocaleDateString("pt-BR", { month: "long", year: "numeric" })}
+          </p>
+          <button
+            type="button"
+            onClick={() => shiftMonth(1)}
+            aria-label="Próximo mês"
+            className="rounded-full p-1.5 text-muted-foreground transition-colors hover:bg-primary/10 hover:text-primary"
+          >
+            <ChevronRight className="h-4 w-4" />
+          </button>
+        </div>
       </div>
 
       <div className="grid grid-cols-7 gap-1 text-center">
