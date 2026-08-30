@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "@/lib/router-compat";
-import { CloudRain, ArrowLeft, Loader2 } from "lucide-react";
+import { CloudRain, ArrowLeft, Loader2, Eye, EyeOff } from "lucide-react";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
