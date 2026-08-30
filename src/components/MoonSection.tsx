@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { NavLink } from "@/lib/router-compat";
-import { Moon, ChevronLeft, ChevronRight } from "lucide-react";
+import { Moon, ChevronLeft, ChevronRight, CalendarDays } from "lucide-react";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Button } from "@/components/ui/button";
 import {
   moonPhase,
   moonIllumination,
@@ -48,12 +50,25 @@ export const MoonCalendarCard = ({ compact = false }: { compact?: boolean }) => 
   const today = new Date();
   const [view, setView] = useState({ year: today.getFullYear(), month: today.getMonth() });
   const { year, month } = view;
+  const [pickerOpen, setPickerOpen] = useState(false);
+  const [pickerValue, setPickerValue] = useState("");
 
   const shiftMonth = (delta: number) =>
     setView((v) => {
       const d = new Date(v.year, v.month + delta, 1);
       return { year: d.getFullYear(), month: d.getMonth() };
     });
+
+  const goToday = () => setView({ year: today.getFullYear(), month: today.getMonth() });
+  const isCurrentMonth = year === today.getFullYear() && month === today.getMonth();
+
+  const applyPicker = () => {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(pickerValue)) return;
+    const d = new Date(`${pickerValue}T12:00:00`);
+    if (isNaN(d.getTime())) return;
+    setView({ year: d.getFullYear(), month: d.getMonth() });
+    setPickerOpen(false);
+  };
   const first = new Date(year, month, 1);
   const daysInMonth = new Date(year, month + 1, 0).getDate();
   // segunda = 0
@@ -80,9 +95,39 @@ export const MoonCalendarCard = ({ compact = false }: { compact?: boolean }) => 
           >
             <ChevronLeft className="h-4 w-4" />
           </button>
-          <p className="text-xs text-muted-foreground capitalize min-w-[110px] text-center">
-            {new Date(year, month, 1).toLocaleDateString("pt-BR", { month: "long", year: "numeric" })}
-          </p>
+          <Popover open={pickerOpen} onOpenChange={setPickerOpen}>
+            <PopoverTrigger asChild>
+              <button
+                type="button"
+                title="Escolher uma data"
+                className="text-xs text-muted-foreground capitalize min-w-[110px] text-center rounded-md px-2 py-1 transition-colors hover:bg-primary/10 hover:text-primary flex items-center gap-1 justify-center"
+              >
+                <CalendarDays className="h-3.5 w-3.5" />
+                {new Date(year, month, 1).toLocaleDateString("pt-BR", { month: "long", year: "numeric" })}
+              </button>
+            </PopoverTrigger>
+            <PopoverContent className="w-64 p-4" align="center">
+              <p className="text-sm font-heading font-bold text-foreground mb-3">Ir para uma data</p>
+              <input
+                type="date"
+                value={pickerValue}
+                onChange={(e) => setPickerValue(e.target.value)}
+                className="w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground"
+              />
+              <Button size="sm" className="w-full mt-3" onClick={applyPicker} disabled={!pickerValue}>
+                Ir
+              </Button>
+            </PopoverContent>
+          </Popover>
+          {!isCurrentMonth && (
+            <button
+              type="button"
+              onClick={goToday}
+              className="text-[11px] font-medium text-primary rounded-full border border-primary/40 px-2.5 py-1 transition-colors hover:bg-primary/10"
+            >
+              Hoje
+            </button>
+          )}
           <button
             type="button"
             onClick={() => shiftMonth(1)}
