@@ -50,12 +50,25 @@ export const MoonCalendarCard = ({ compact = false }: { compact?: boolean }) => 
   const today = new Date();
   const [view, setView] = useState({ year: today.getFullYear(), month: today.getMonth() });
   const { year, month } = view;
+  const [pickerOpen, setPickerOpen] = useState(false);
+  const [pickerValue, setPickerValue] = useState("");
 
   const shiftMonth = (delta: number) =>
     setView((v) => {
       const d = new Date(v.year, v.month + delta, 1);
       return { year: d.getFullYear(), month: d.getMonth() };
     });
+
+  const goToday = () => setView({ year: today.getFullYear(), month: today.getMonth() });
+  const isCurrentMonth = year === today.getFullYear() && month === today.getMonth();
+
+  const applyPicker = () => {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(pickerValue)) return;
+    const d = new Date(`${pickerValue}T12:00:00`);
+    if (isNaN(d.getTime())) return;
+    setView({ year: d.getFullYear(), month: d.getMonth() });
+    setPickerOpen(false);
+  };
   const first = new Date(year, month, 1);
   const daysInMonth = new Date(year, month + 1, 0).getDate();
   // segunda = 0
