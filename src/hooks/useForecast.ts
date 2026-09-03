@@ -51,7 +51,7 @@ const URL =
   `&current=temperature_2m,apparent_temperature,relative_humidity_2m,precipitation,weather_code,wind_speed_10m,is_day` +
   `&hourly=temperature_2m,precipitation_probability,precipitation,weather_code,wind_speed_10m,relative_humidity_2m` +
   `&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_probability_max,sunrise,sunset` +
-  `&past_days=3&forecast_days=7&timezone=America%2FSao_Paulo`;
+  `&past_days=3&forecast_days=16&timezone=America%2FSao_Paulo`;
 
 async function fetchForecast(): Promise<ForecastData> {
   const res = await fetch(URL);

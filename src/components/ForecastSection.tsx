@@ -139,7 +139,7 @@ const ForecastSection = () => {
                   </Link>
                 ))}
                 <Link
-                  to={`/dia/${data.daily.date[data.daily.date.length - 1]}`}
+                  to="/proximos-dias"
                   className="rounded-xl border border-dashed border-border bg-secondary/40 p-5 flex flex-col justify-center hover:border-primary transition-all"
                 >
                   <p className="font-heading font-bold text-foreground">Próximos dias</p>
