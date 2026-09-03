@@ -14,6 +14,7 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ElNinoLaNinaRouteImport } from './routes/el-nino-la-nina'
 import { Route as MapaColaborativoRouteImport } from './routes/mapa-colaborativo'
 import { Route as ModeracaoRouteImport } from './routes/moderacao'
+import { Route as ProximosDiasRouteImport } from './routes/proximos-dias'
 import { Route as DiaDateRouteImport } from './routes/dia.$date'
 import { Route as LuaDateRouteImport } from './routes/lua.$date'
 
@@ -42,6 +43,11 @@ const ModeracaoRoute = ModeracaoRouteImport.update({
   path: '/moderacao',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProximosDiasRoute = ProximosDiasRouteImport.update({
+  id: '/proximos-dias',
+  path: '/proximos-dias',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DiaDateRoute = DiaDateRouteImport.update({
   id: '/dia/$date',
   path: '/dia/$date',
@@ -59,6 +65,7 @@ export interface FileRoutesByFullPath {
   '/el-nino-la-nina': typeof ElNinoLaNinaRoute
   '/mapa-colaborativo': typeof MapaColaborativoRoute
   '/moderacao': typeof ModeracaoRoute
+  '/proximos-dias': typeof ProximosDiasRoute
   '/dia/$date': typeof DiaDateRoute
   '/lua/$date': typeof LuaDateRoute
 }
@@ -68,6 +75,7 @@ export interface FileRoutesByTo {
   '/el-nino-la-nina': typeof ElNinoLaNinaRoute
   '/mapa-colaborativo': typeof MapaColaborativoRoute
   '/moderacao': typeof ModeracaoRoute
+  '/proximos-dias': typeof ProximosDiasRoute
   '/dia/$date': typeof DiaDateRoute
   '/lua/$date': typeof LuaDateRoute
 }
@@ -78,6 +86,7 @@ export interface FileRoutesById {
   '/el-nino-la-nina': typeof ElNinoLaNinaRoute
   '/mapa-colaborativo': typeof MapaColaborativoRoute
   '/moderacao': typeof ModeracaoRoute
+  '/proximos-dias': typeof ProximosDiasRoute
   '/dia/$date': typeof DiaDateRoute
   '/lua/$date': typeof LuaDateRoute
 }
@@ -89,6 +98,7 @@ export interface FileRouteTypes {
     | '/el-nino-la-nina'
     | '/mapa-colaborativo'
     | '/moderacao'
+    | '/proximos-dias'
     | '/dia/$date'
     | '/lua/$date'
   fileRoutesByTo: FileRoutesByTo
@@ -98,6 +108,7 @@ export interface FileRouteTypes {
     | '/el-nino-la-nina'
     | '/mapa-colaborativo'
     | '/moderacao'
+    | '/proximos-dias'
     | '/dia/$date'
     | '/lua/$date'
   id:
@@ -107,6 +118,7 @@ export interface FileRouteTypes {
     | '/el-nino-la-nina'
     | '/mapa-colaborativo'
     | '/moderacao'
+    | '/proximos-dias'
     | '/dia/$date'
     | '/lua/$date'
   fileRoutesById: FileRoutesById
@@ -117,6 +129,7 @@ export interface RootRouteChildren {
   ElNinoLaNinaRoute: typeof ElNinoLaNinaRoute
   MapaColaborativoRoute: typeof MapaColaborativoRoute
   ModeracaoRoute: typeof ModeracaoRoute
+  ProximosDiasRoute: typeof ProximosDiasRoute
   DiaDateRoute: typeof DiaDateRoute
   LuaDateRoute: typeof LuaDateRoute
 }
@@ -158,6 +171,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ModeracaoRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/proximos-dias': {
+      id: '/proximos-dias'
+      path: '/proximos-dias'
+      fullPath: '/proximos-dias'
+      preLoaderRoute: typeof ProximosDiasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/dia/$date': {
       id: '/dia/$date'
       path: '/dia/$date'
@@ -181,6 +201,7 @@ const rootRouteChildren: RootRouteChildren = {
   ElNinoLaNinaRoute: ElNinoLaNinaRoute,
   MapaColaborativoRoute: MapaColaborativoRoute,
   ModeracaoRoute: ModeracaoRoute,
+  ProximosDiasRoute: ProximosDiasRoute,
   DiaDateRoute: DiaDateRoute,
   LuaDateRoute: LuaDateRoute,
 }
