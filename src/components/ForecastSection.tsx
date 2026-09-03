@@ -112,24 +112,24 @@ const ForecastSection = () => {
               <p className="text-sm text-muted-foreground mb-3">
                 Clique em um dia para ver a previsão completa hora a hora.
               </p>
-              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              <div className="grid gap-3 sm:grid-cols-2">
                 {data.daily.date.map((d, i) => (
                   <Link
                     to={`/dia/${d}`}
                     key={d}
-                    className="rounded-xl bg-card border border-border p-4 shadow-card flex items-center justify-between hover:border-primary hover:shadow-elevated transition-all"
+                    className="rounded-xl bg-card border border-border p-5 shadow-card flex items-start justify-between gap-4 hover:border-primary hover:shadow-elevated transition-all"
                   >
                     <div>
                       <p className="font-heading font-bold text-foreground">
                         {i === 0 ? "Hoje" : formatDay(d)}
                       </p>
-                      <p className="text-xs text-muted-foreground">{codeLabel(data.daily.codes[i])}</p>
+                      <p className="text-sm text-muted-foreground">{codeLabel(data.daily.codes[i])}</p>
                       <p className="text-xs text-alert-flood mt-1">
                         {data.daily.rainProb[i]}% • {data.daily.rainSum[i].toFixed(1)} mm
                       </p>
                     </div>
                     <div className="text-right">
-                      <p className="font-heading text-lg font-bold text-foreground">
+                      <p className="font-heading text-2xl font-bold text-foreground">
                         {Math.round(data.daily.tempMax[i])}°
                       </p>
                       <p className="text-sm text-muted-foreground">
@@ -138,7 +138,15 @@ const ForecastSection = () => {
                     </div>
                   </Link>
                 ))}
+                <Link
+                  to={`/dia/${data.daily.date[data.daily.date.length - 1]}`}
+                  className="rounded-xl border border-dashed border-border bg-secondary/40 p-5 flex flex-col justify-center hover:border-primary transition-all"
+                >
+                  <p className="font-heading font-bold text-foreground">Próximos dias</p>
+                  <p className="text-sm text-muted-foreground">Descubra o que irá acontecer</p>
+                </Link>
               </div>
+
               <div className="mt-4 flex flex-wrap gap-6 text-sm text-muted-foreground">
                 <span className="flex items-center gap-2">
                   <Sunrise className="h-4 w-4 text-alert-warning" /> Nascer do sol:{" "}
