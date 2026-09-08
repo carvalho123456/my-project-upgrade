@@ -57,7 +57,7 @@ const ForecastSection = () => {
                 </div>
                 <p className="mt-2 text-sm opacity-80">
                   Sensação de {Math.round(data.current.apparent)}° • Chuva agora{" "}
-                  {data.current.precipitation.toFixed(1)} mm
+                  {(data.current.precipitation ?? 0).toFixed(1)} mm
                 </p>
               </div>
 
@@ -68,7 +68,7 @@ const ForecastSection = () => {
                   {
                     Icon: Umbrella,
                     label: "Chuva 24h",
-                    value: `${data.rain24h.toFixed(1)} mm`,
+                    value: `${(data.rain24h ?? 0).toFixed(1)} mm`,
                   },
                   {
                     Icon: Thermometer,
@@ -125,7 +125,7 @@ const ForecastSection = () => {
                       </p>
                       <p className="text-sm text-muted-foreground">{codeLabel(data.daily.codes[i])}</p>
                       <p className="text-xs text-alert-flood mt-1">
-                        {data.daily.rainProb[i]}% • {data.daily.rainSum[i].toFixed(1)} mm
+                        {data.daily.rainProb[i] ?? 0}% • {(data.daily.rainSum[i] ?? 0).toFixed(1)} mm
                       </p>
                     </div>
                     <div className="text-right">

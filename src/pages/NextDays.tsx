@@ -161,8 +161,8 @@ const NextDays = () => {
                 </div>
                 <div className="grid grid-cols-3 gap-3 border-t border-primary-foreground/20 pt-4 text-sm">
                   <div><p className="opacity-70">Mínima</p><p className="font-bold">{Math.round(data.daily.tempMin[safeIndex])}°</p></div>
-                  <div><p className="opacity-70">Chuva</p><p className="font-bold">{data.daily.rainSum[safeIndex].toFixed(1)} mm</p></div>
-                  <div><p className="opacity-70">Chance</p><p className="font-bold">{data.daily.rainProb[safeIndex]}%</p></div>
+                  <div><p className="opacity-70">Chuva</p><p className="font-bold">{(data.daily.rainSum[safeIndex] ?? 0).toFixed(1)} mm</p></div>
+                  <div><p className="opacity-70">Chance</p><p className="font-bold">{data.daily.rainProb[safeIndex] ?? 0}%</p></div>
                 </div>
               </article>
 
@@ -204,8 +204,8 @@ const NextDays = () => {
                 </div>
                 <div className="mt-4 grid gap-3 border-t border-border pt-4 sm:grid-cols-3">
                   <div className="flex items-center gap-3"><Thermometer className="text-alert-landslide" /><div><p className="text-xs text-muted-foreground">Amplitude</p><p className="font-bold text-foreground">{Math.round(data.daily.tempMax[safeIndex] - data.daily.tempMin[safeIndex])}°C</p></div></div>
-                  <div className="flex items-center gap-3"><Umbrella className="text-alert-flood" /><div><p className="text-xs text-muted-foreground">Probabilidade</p><p className="font-bold text-foreground">{data.daily.rainProb[safeIndex]}%</p></div></div>
-                  <div className="flex items-center gap-3"><Droplets className="text-primary" /><div><p className="text-xs text-muted-foreground">Acumulado</p><p className="font-bold text-foreground">{data.daily.rainSum[safeIndex].toFixed(1)} mm</p></div></div>
+                  <div className="flex items-center gap-3"><Umbrella className="text-alert-flood" /><div><p className="text-xs text-muted-foreground">Probabilidade</p><p className="font-bold text-foreground">{data.daily.rainProb[safeIndex] ?? 0}%</p></div></div>
+                  <div className="flex items-center gap-3"><Droplets className="text-primary" /><div><p className="text-xs text-muted-foreground">Acumulado</p><p className="font-bold text-foreground">{(data.daily.rainSum[safeIndex] ?? 0).toFixed(1)} mm</p></div></div>
                 </div>
               </section>
             </div>
