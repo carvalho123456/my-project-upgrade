@@ -117,7 +117,7 @@ const DayDetail = () => {
                 </div>
                 <p className="mt-2 text-lg opacity-90">{codeLabel(data!.daily.codes[idx])}</p>
                 <p className="mt-1 text-sm opacity-80">
-                  Chuva {data!.daily.rainSum[idx].toFixed(1)} mm • {data!.daily.rainProb[idx]}% de chance
+                  Chuva {(data!.daily.rainSum[idx] ?? 0).toFixed(1)} mm • {data!.daily.rainProb[idx]}% de chance
                 </p>
               </div>
 
@@ -148,8 +148,8 @@ const DayDetail = () => {
                       {
                         Icon: CloudRain,
                         label: "Chuva (mm)",
-                        a: `${data!.daily.rainSum[idx].toFixed(1)}mm`,
-                        b: nextIdx >= 0 ? `${data!.daily.rainSum[nextIdx].toFixed(1)}mm` : "",
+                        a: `${(data!.daily.rainSum[idx] ?? 0).toFixed(1)}mm`,
+                        b: nextIdx >= 0 ? `${(data!.daily.rainSum[nextIdx] ?? 0).toFixed(1)}mm` : "",
                       },
                       {
                         Icon: Wind,
