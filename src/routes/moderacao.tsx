@@ -11,6 +11,8 @@ export const Route = createFileRoute("/moderacao")({
       },
       { property: "og:title", content: "Moderação de relatos" },
       { property: "og:description", content: "Aprove ou rejeite relatos da comunidade de Caraguatatuba." },
+       { property: "og:type", content: "website" },
+       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Moderation,

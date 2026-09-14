@@ -8,6 +8,8 @@
   --font-heading: "Space Grotesk", sans-serif;
   --font-body: "Plus Jakarta Sans", sans-serif;
   --font-sans: "Plus Jakarta Sans", sans-serif;
+  --font-forecast-heading: "Outfit", sans-serif;
+  --font-forecast-body: "Figtree", sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -55,6 +57,12 @@
   --color-chart-3: hsl(var(--sky));
   --color-chart-4: hsl(var(--alert-warning));
   --color-chart-5: hsl(var(--safe));
+  --color-forecast-background: oklch(0.205 0.025 276);
+  --color-forecast-panel: oklch(0.245 0.03 276);
+  --color-forecast-foreground: oklch(0.965 0.007 265);
+  --color-forecast-muted: oklch(0.69 0.025 270);
+  --color-forecast-accent: oklch(0.64 0.145 235);
+  --color-forecast-border: oklch(0.34 0.035 276);
   --animate-float: float 4s ease-in-out infinite;
   --animate-pulse-slow: pulse-slow 3s ease-in-out infinite;
   --animate-accordion-down: accordion-down 0.2s ease-out;

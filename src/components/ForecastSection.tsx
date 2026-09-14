@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "@/lib/router-compat";
-import { Thermometer, Droplets, Wind, Umbrella, Sunrise, Sunset } from "lucide-react";
+import { Thermometer, Droplets, Wind, Umbrella, Sunrise, Sunset, CalendarDays, ArrowRight } from "lucide-react";
 import { useForecast } from "@/hooks/useForecast";
 import { codeLabel, formatDay, formatHour } from "@/lib/weather";
 
@@ -57,7 +57,7 @@ const ForecastSection = () => {
                 </div>
                 <p className="mt-2 text-sm opacity-80">
                   Sensação de {Math.round(data.current.apparent)}° • Chuva agora{" "}
-                  {(data.current.precipitation ?? 0).toFixed(1)} mm
+                  {Number(data.current.precipitation ?? 0).toFixed(1)} mm
                 </p>
               </div>
 
@@ -68,7 +68,7 @@ const ForecastSection = () => {
                   {
                     Icon: Umbrella,
                     label: "Chuva 24h",
-                    value: `${(data.rain24h ?? 0).toFixed(1)} mm`,
+                    value: `${Number(data.rain24h ?? 0).toFixed(1)} mm`,
                   },
                   {
                     Icon: Thermometer,
@@ -113,40 +113,43 @@ const ForecastSection = () => {
                 Clique em um dia para ver a previsão completa hora a hora.
               </p>
               <div className="grid gap-3 sm:grid-cols-2">
-                {data.daily.date.map((d, i) => (
+                {data.daily.date.slice(0, 7).map((d, i) => (
                   <Link
                     to={`/dia/${d}`}
                     key={d}
-                    className="rounded-xl bg-card border border-border p-5 shadow-card flex items-start justify-between gap-4 hover:border-primary hover:shadow-elevated transition-all"
+                    className="group rounded-xl border border-forecast-border bg-forecast-panel p-4 text-forecast-foreground shadow-card flex min-h-24 items-center justify-between transition-all hover:border-forecast-accent hover:-translate-y-0.5"
                   >
                     <div>
-                      <p className="font-heading font-bold text-foreground">
+                      <p className="font-forecast-heading font-bold text-forecast-foreground">
                         {i === 0 ? "Hoje" : formatDay(d)}
                       </p>
-                      <p className="text-sm text-muted-foreground">{codeLabel(data.daily.codes[i])}</p>
-                      <p className="text-xs text-alert-flood mt-1">
-                        {data.daily.rainProb[i] ?? 0}% • {(data.daily.rainSum[i] ?? 0).toFixed(1)} mm
+                      <p className="text-xs text-forecast-muted">{codeLabel(data.daily.codes[i])}</p>
+                      <p className="text-xs text-forecast-accent mt-1">
+                        {data.daily.rainProb[i] ?? 0}% • {Number(data.daily.rainSum[i] ?? 0).toFixed(1)} mm
                       </p>
                     </div>
                     <div className="text-right">
-                      <p className="font-heading text-2xl font-bold text-foreground">
+                      <p className="font-forecast-heading text-lg font-bold text-forecast-foreground">
                         {Math.round(data.daily.tempMax[i])}°
                       </p>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-sm text-forecast-muted">
                         {Math.round(data.daily.tempMin[i])}°
                       </p>
                     </div>
                   </Link>
                 ))}
                 <Link
-                  to="/proximos-dias"
-                  className="rounded-xl border border-dashed border-border bg-secondary/40 p-5 flex flex-col justify-center hover:border-primary transition-all"
+                  to="/previsao"
+                  className="group rounded-xl border border-forecast-border bg-forecast-panel p-4 text-forecast-foreground shadow-card flex min-h-24 items-center justify-between transition-all hover:border-forecast-accent hover:-translate-y-0.5"
                 >
-                  <p className="font-heading font-bold text-foreground">Próximos dias</p>
-                  <p className="text-sm text-muted-foreground">Descubra o que irá acontecer</p>
+                  <div>
+                    <CalendarDays className="mb-2 h-5 w-5 text-forecast-accent" />
+                    <p className="font-forecast-heading font-bold">Mais dias</p>
+                    <p className="text-xs text-forecast-muted">Veja previsões e dias passados</p>
+                  </div>
+                  <ArrowRight className="h-5 w-5 text-forecast-accent transition-transform group-hover:translate-x-1" />
                 </Link>
               </div>
-
               <div className="mt-4 flex flex-wrap gap-6 text-sm text-muted-foreground">
                 <span className="flex items-center gap-2">
                   <Sunrise className="h-4 w-4 text-alert-warning" /> Nascer do sol:{" "}

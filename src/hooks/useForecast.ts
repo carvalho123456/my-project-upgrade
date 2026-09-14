@@ -40,6 +40,17 @@ export interface ForecastData {
     sunrise: string[];
     sunset: string[];
   };
+  /** Período completo retornado, incluindo histórico recente e previsão. */
+  dailyAll: {
+    date: string[];
+    codes: number[];
+    tempMax: number[];
+    tempMin: number[];
+    rainSum: number[];
+    rainProb: number[];
+    sunrise: string[];
+    sunset: string[];
+  };
   rain24h: number;
   windMax24h: number;
   rainPast72h: number;
@@ -51,7 +62,7 @@ const URL =
   `&current=temperature_2m,apparent_temperature,relative_humidity_2m,precipitation,weather_code,wind_speed_10m,is_day` +
   `&hourly=temperature_2m,precipitation_probability,precipitation,weather_code,wind_speed_10m,relative_humidity_2m` +
   `&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_probability_max,sunrise,sunset` +
-  `&past_days=3&forecast_days=16&timezone=America%2FSao_Paulo`;
+  `&past_days=14&forecast_days=16&timezone=America%2FSao_Paulo`;
 
 async function fetchForecast(): Promise<ForecastData> {
   const res = await fetch(URL);
@@ -79,6 +90,17 @@ async function fetchForecast(): Promise<ForecastData> {
     code: slice<number>(d.hourly.weather_code),
     wind: slice<number>(d.hourly.wind_speed_10m),
     humidity: slice<number>(d.hourly.relative_humidity_2m),
+  };
+
+  const dailyAll = {
+    date: dailyDates,
+    codes: d.daily.weather_code,
+    tempMax: d.daily.temperature_2m_max,
+    tempMin: d.daily.temperature_2m_min,
+    rainSum: d.daily.precipitation_sum,
+    rainProb: d.daily.precipitation_probability_max,
+    sunrise: d.daily.sunrise,
+    sunset: d.daily.sunset,
   };
 
   return {
@@ -111,6 +133,7 @@ async function fetchForecast(): Promise<ForecastData> {
       sunrise: d.daily.sunrise.slice(todayIdx),
       sunset: d.daily.sunset.slice(todayIdx),
     },
+    dailyAll,
     rain24h: hourly.precipitation.reduce((a, b) => a + (b ?? 0), 0),
     windMax24h: hourly.wind.reduce((a, b) => Math.max(a, b ?? 0), 0),
     rainPast72h,

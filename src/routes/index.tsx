@@ -16,6 +16,8 @@ export const Route = createFileRoute("/")({
         content:
           "Monitore chuvas, riscos de alagamento e deslizamento em Caraguatatuba em tempo real.",
       },
+       { property: "og:type", content: "website" },
+       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Index,
