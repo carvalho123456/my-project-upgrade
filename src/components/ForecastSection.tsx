@@ -113,7 +113,7 @@ const ForecastSection = () => {
                 Clique em um dia para ver a previsão completa hora a hora.
               </p>
               <div className="grid gap-3 sm:grid-cols-2">
-                {data.daily.date.map((d, i) => (
+                {data.daily.date.slice(0, 7).map((d, i) => (
                   <Link
                     to={`/dia/${d}`}
                     key={d}

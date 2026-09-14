@@ -11,6 +11,8 @@ export const Route = createFileRoute("/auth")({
       },
       { property: "og:title", content: "Entrar | Caraguatatuba Flood Guardian" },
       { property: "og:description", content: "Acesse sua conta para enviar relatos na sua região." },
+       { property: "og:type", content: "website" },
+       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: AuthPage,

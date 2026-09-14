@@ -11,6 +11,8 @@ export const Route = createFileRoute("/lua/$date")({
       },
       { property: "og:title", content: "Fase da Lua e marés | Caraguatatuba" },
       { property: "og:description", content: "Veja a Lua do dia e sua influência nas marés." },
+       { property: "og:type", content: "website" },
+       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: MoonDay,

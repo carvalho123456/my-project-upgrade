@@ -11,6 +11,8 @@ export const Route = createFileRoute("/dia/$date")({
       },
       { property: "og:title", content: "Previsão detalhada do dia | Caraguatatuba" },
       { property: "og:description", content: "Chuva hora a hora e condições do dia em Caraguatatuba." },
+       { property: "og:type", content: "website" },
+       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: DayDetail,
