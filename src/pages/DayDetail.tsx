@@ -71,7 +71,7 @@ const DayDetail = () => {
   const { date = "" } = useParams({ strict: false }) as { date?: string };
   const { data, isLoading } = useForecast();
 
-  const idx = data?.daily.date.findIndex((d) => d === date) ?? -1;
+  const idx = data?.dailyAll.date.findIndex((d) => d === date) ?? -1;
   const valid = data && idx >= 0;
 
   const hoursIdx =
@@ -79,7 +79,8 @@ const DayDetail = () => {
   const windMax = hoursIdx.reduce((a, i) => Math.max(a, data!.hourlyAll.wind[i] ?? 0), 0);
   const humMax = hoursIdx.reduce((a, i) => Math.max(a, data!.hourlyAll.humidity[i] ?? 0), 0);
 
-  const nextIdx = valid && idx + 1 < data!.daily.date.length ? idx + 1 : -1;
+  const daily = data?.dailyAll;
+  const nextIdx = valid && daily && idx + 1 < daily.date.length ? idx + 1 : -1;
 
   return (
     <div className="min-h-screen bg-background">
@@ -109,15 +110,15 @@ const DayDetail = () => {
                 <p className="text-sm opacity-80 mb-1 capitalize">{longDate(date)}</p>
                 <div className="flex items-end gap-3">
                   <span className="font-heading text-6xl font-bold">
-                    {Math.round(data!.daily.tempMax[idx])}°
+                    {Math.round(daily!.tempMax[idx])}°
                   </span>
                   <span className="pb-3 text-xl opacity-80">
-                    {Math.round(data!.daily.tempMin[idx])}°
+                    {Math.round(daily!.tempMin[idx])}°
                   </span>
                 </div>
-                <p className="mt-2 text-lg opacity-90">{codeLabel(data!.daily.codes[idx])}</p>
+                <p className="mt-2 text-lg opacity-90">{codeLabel(daily!.codes[idx])}</p>
                 <p className="mt-1 text-sm opacity-80">
-                  Chuva {(data!.daily.rainSum[idx] ?? 0).toFixed(1)} mm • {data!.daily.rainProb[idx]}% de chance
+                  Chuva {Number(daily!.rainSum[idx] ?? 0).toFixed(1)} mm • {daily!.rainProb[idx] ?? 0}% de chance
                 </p>
               </div>
 
@@ -136,20 +137,20 @@ const DayDetail = () => {
                       {
                         Icon: Thermometer,
                         label: "Temperatura máxima",
-                        a: `${Math.round(data!.daily.tempMax[idx])}°`,
-                        b: nextIdx >= 0 ? `${Math.round(data!.daily.tempMax[nextIdx])}°` : "",
+                         a: `${Math.round(daily!.tempMax[idx])}°`,
+                         b: nextIdx >= 0 ? `${Math.round(daily!.tempMax[nextIdx])}°` : "",
                       },
                       {
                         Icon: ThermometerSnowflake,
                         label: "Temperatura mínima",
-                        a: `${Math.round(data!.daily.tempMin[idx])}°`,
-                        b: nextIdx >= 0 ? `${Math.round(data!.daily.tempMin[nextIdx])}°` : "",
+                         a: `${Math.round(daily!.tempMin[idx])}°`,
+                         b: nextIdx >= 0 ? `${Math.round(daily!.tempMin[nextIdx])}°` : "",
                       },
                       {
                         Icon: CloudRain,
                         label: "Chuva (mm)",
-                        a: `${(data!.daily.rainSum[idx] ?? 0).toFixed(1)}mm`,
-                        b: nextIdx >= 0 ? `${(data!.daily.rainSum[nextIdx] ?? 0).toFixed(1)}mm` : "",
+                         a: `${Number(daily!.rainSum[idx] ?? 0).toFixed(1)}mm`,
+                         b: nextIdx >= 0 ? `${Number(daily!.rainSum[nextIdx] ?? 0).toFixed(1)}mm` : "",
                       },
                       {
                         Icon: Wind,
@@ -187,7 +188,7 @@ const DayDetail = () => {
             </div>
 
             <div className="grid gap-5 lg:grid-cols-2 items-start">
-              <SunArc sunrise={data!.daily.sunrise[idx]} sunset={data!.daily.sunset[idx]} />
+               <SunArc sunrise={daily!.sunrise[idx]} sunset={daily!.sunset[idx]} />
               <MoonCalendarCard compact />
             </div>
           </>
