@@ -38,6 +38,20 @@ export default function ForecastArchive() {
   const available = new Set(data?.dailyAll.date ?? []);
   const selectedIndex = data?.dailyAll.date.indexOf(selected) ?? -1;
 
+  // Lista resumida: 3 dias anteriores, hoje e os 6 dias seguintes.
+  const wanted = new Set<string>();
+  const todayMs = new Date(`${todayIso}T12:00:00`).getTime();
+  for (let offset = -3; offset <= 6; offset++) {
+    wanted.add(toIso(new Date(todayMs + offset * 86400000)));
+  }
+  const visibleDays = useMemo(
+    () =>
+      (data?.dailyAll.date ?? [])
+        .map((date, index) => ({ date, index }))
+        .filter(({ date }) => wanted.has(date)),
+    [data?.dailyAll.date],
+  );
+
   const chooseDate = (iso: string) => {
     setSelectedDate(iso);
     setMonthOffset(0);
