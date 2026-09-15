@@ -143,7 +143,7 @@ export default function ForecastArchive() {
 
               <h2 className="mb-3 font-forecast-heading text-lg font-bold">Todos os dias disponíveis</h2>
               <div className="grid gap-3 sm:grid-cols-2">
-                {data.dailyAll.date.map((date, index) => (
+                {visibleDays.map(({ date, index }) => (
                   <button
                     type="button"
                     key={date}
