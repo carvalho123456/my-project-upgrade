@@ -7,6 +7,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
+import { MotionConfig } from "framer-motion";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -106,8 +107,10 @@ function RootComponent() {
       <AuthProvider>
         <WeatherThemeProvider>
           <TooltipProvider>
-            <Sonner />
-            <Outlet />
+            <MotionConfig transition={{ duration: 0 }}>
+              <Sonner />
+              <Outlet />
+            </MotionConfig>
           </TooltipProvider>
         </WeatherThemeProvider>
       </AuthProvider>
