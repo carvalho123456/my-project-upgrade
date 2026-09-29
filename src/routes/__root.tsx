@@ -7,7 +7,11 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
-import { MotionConfig } from "framer-motion";
+import { MotionConfig, MotionGlobalConfig } from "framer-motion";
+
+// Sem animações de entrada entre páginas: os componentes definem suas próprias
+// `transition`, que sobrepõem o MotionConfig — o skipAnimations global desativa todas.
+MotionGlobalConfig.skipAnimations = true;
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
