@@ -107,8 +107,10 @@ function RootComponent() {
       <AuthProvider>
         <WeatherThemeProvider>
           <TooltipProvider>
-            <Sonner />
-            <Outlet />
+            <MotionConfig transition={{ duration: 0 }}>
+              <Sonner />
+              <Outlet />
+            </MotionConfig>
           </TooltipProvider>
         </WeatherThemeProvider>
       </AuthProvider>
