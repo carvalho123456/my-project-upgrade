@@ -50,7 +50,7 @@ const PreventionSection = () => (
   <section id="prevencao" className="py-12 bg-secondary/50">
     <div className="container mx-auto px-4">
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        initial={false}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "300px" }}
         className="text-center mb-12"
@@ -71,7 +71,7 @@ const PreventionSection = () => (
         {tips.map((tip, i) => (
           <motion.div
             key={tip.title}
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "300px" }}
             transition={{ delay: i * 0.06 }}
@@ -88,7 +88,7 @@ const PreventionSection = () => (
 
       {/* Emergency banner */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={false}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "300px" }}
         className="mt-12 bg-ocean-deep rounded-xl p-6 sm:p-8 text-center"

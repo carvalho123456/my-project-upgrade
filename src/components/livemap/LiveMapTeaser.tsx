@@ -7,7 +7,7 @@ const LiveMapTeaser = () => (
   <section id="colaborativo" className="py-12 bg-background">
     <div className="container mx-auto px-4">
       <motion.div
-        initial={{ opacity: 0, y: 24 }}
+        initial={false}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "300px" }}
         className="flex flex-col items-start gap-5 rounded-2xl border border-border bg-card p-6 shadow-card sm:flex-row sm:items-center"

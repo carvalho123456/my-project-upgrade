@@ -46,7 +46,7 @@ const DisasterEducation = () => (
   <section id="desastres" className="py-12 bg-background">
     <div className="container mx-auto px-4">
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        initial={false}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "300px" }}
         className="mb-12 text-center"
@@ -64,7 +64,7 @@ const DisasterEducation = () => (
         {disasters.map((d, i) => (
           <motion.article
             key={d.name}
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "300px" }}
             transition={{ delay: i * 0.08 }}

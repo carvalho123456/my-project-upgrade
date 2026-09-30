@@ -28,7 +28,7 @@ const FloodSection = () => (
   <section id="alagamentos" className="py-12 bg-secondary/50">
     <div className="container mx-auto px-4">
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        initial={false}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "300px" }}
         className="mb-12"
@@ -51,7 +51,7 @@ const FloodSection = () => (
         {floodAreas.map((item, i) => (
           <motion.div
             key={item.area}
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "300px" }}
             transition={{ delay: i * 0.1 }}
@@ -76,7 +76,7 @@ const FloodSection = () => (
       </div>
 
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={false}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "300px" }}
         className="mt-10 bg-card rounded-xl p-6 shadow-card border border-border"

@@ -23,7 +23,7 @@ const LandslideSection = () => (
   <section id="deslizamentos" className="py-12 bg-background">
     <div className="container mx-auto px-4">
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        initial={false}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "300px" }}
         className="mb-12"
@@ -44,7 +44,7 @@ const LandslideSection = () => (
 
       {/* Historical event */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={false}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "300px" }}
         className="bg-ocean-deep rounded-xl p-6 sm:p-8 mb-10 text-primary-foreground"
@@ -70,7 +70,7 @@ const LandslideSection = () => (
         {landslideAreas.map((item, i) => (
           <motion.div
             key={item.area}
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "300px" }}
             transition={{ delay: i * 0.1 }}

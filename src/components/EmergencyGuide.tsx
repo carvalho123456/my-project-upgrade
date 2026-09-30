@@ -43,7 +43,7 @@ const EmergencyGuide = () => {
     <section id="emergencia" className="py-12 bg-secondary/40">
       <div className="container mx-auto px-4">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "300px" }}
           className="mb-10 text-center"

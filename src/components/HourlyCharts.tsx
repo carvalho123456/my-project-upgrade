@@ -269,7 +269,7 @@ const HourlyCharts = ({ dayIso, bare = false }: Props) => {
     <section id="graficos" className="py-12">
       <div className="container mx-auto px-4">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "300px" }}
           className="mb-8 text-center"

@@ -42,9 +42,8 @@ const Header = () => {
 
   return (
     <motion.header
-      initial={{ y: -80 }}
+      initial={false}
       animate={{ y: 0 }}
-      transition={{ duration: 0.6 }}
       className="fixed top-0 left-0 right-0 z-50 bg-ocean-deep/90 backdrop-blur-md border-b border-ocean-mid/30"
     >
       <div className="container mx-auto flex items-center justify-between py-4 px-4">
