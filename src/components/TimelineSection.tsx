@@ -26,7 +26,7 @@ const TimelineSection = () => {
     <section id="historia" className="py-12 bg-background">
       <div className="container mx-auto px-4">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "300px" }}
           className="mb-12 text-center"
@@ -56,7 +56,7 @@ const TimelineSection = () => {
           {data?.map((ev, i) => (
             <motion.div
               key={ev.id}
-              initial={{ opacity: 0, y: 20 }}
+              initial={false}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "300px" }}
               transition={{ delay: 0.05 * i }}

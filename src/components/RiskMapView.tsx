@@ -130,7 +130,7 @@ const RiskMapView = () => {
     <section id="mapa" className="py-12 bg-background">
       <div className="container mx-auto px-4">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "300px" }}
           className="text-center mb-12"
@@ -167,7 +167,7 @@ const RiskMapView = () => {
         </div>
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.98 }}
+          initial={false}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, margin: "300px" }}
           className="rounded-xl overflow-hidden shadow-elevated border border-border"

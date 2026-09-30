@@ -9,4 +9,4 @@
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
 
-- Sem animações framer-motion de entrada entre páginas: `MotionGlobalConfig.skipAnimations = true` em `src/routes/__root.tsx`. Why: usuário achou a transição repetitiva; MotionConfig duration 0 não basta pois componentes têm `transition` própria.
+- Componentes de página usam `initial={false}` e o `MotionConfig` mantém duração zero; não use `MotionGlobalConfig.skipAnimations`, pois ele também bloqueia mudanças visuais do tema climático. Why: a navegação deve ser instantânea sem remover as cores dinâmicas.

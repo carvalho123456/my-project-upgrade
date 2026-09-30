@@ -32,7 +32,7 @@ const EnvironmentSection = () => (
   <section id="meio-ambiente" className="py-12 bg-ocean-deep text-primary-foreground">
     <div className="container mx-auto px-4">
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        initial={false}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "300px" }}
         className="mb-12 max-w-3xl"
@@ -50,7 +50,7 @@ const EnvironmentSection = () => (
         {causes.map((c, i) => (
           <motion.div
             key={c.title}
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "300px" }}
             transition={{ delay: i * 0.08 }}
@@ -68,7 +68,7 @@ const EnvironmentSection = () => (
       </div>
 
       <motion.p
-        initial={{ opacity: 0 }}
+        initial={false}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, margin: "300px" }}
         className="mt-10 rounded-xl border border-sky/30 bg-sky/10 p-6 text-ocean-pale/90"

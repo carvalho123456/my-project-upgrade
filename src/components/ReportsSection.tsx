@@ -111,7 +111,7 @@ const ReportsSection = () => {
     <section id="relatos" className="py-12 bg-background">
       <div className="container mx-auto px-4">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "300px" }}
           className="mb-12 text-center"
@@ -269,7 +269,7 @@ const ReportsSection = () => {
               {approved?.map((r) => (
                 <motion.div
                   key={r.id}
-                  initial={{ opacity: 0, y: 12 }}
+                  initial={false}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "300px" }}
                   className="rounded-xl bg-card border border-border p-5 shadow-card"
