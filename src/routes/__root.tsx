@@ -5,6 +5,7 @@ import {
   useRouter,
   HeadContent,
   Scripts,
+  type ErrorComponentProps,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 import { MotionConfig } from "framer-motion";
@@ -17,7 +18,7 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import { WeatherThemeProvider } from "@/contexts/WeatherTheme";
 import NotFound from "@/pages/NotFound";
 
-function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
+function ErrorComponent({ error, reset }: ErrorComponentProps) {
   console.error(error);
   const router = useRouter();
   useEffect(() => {
