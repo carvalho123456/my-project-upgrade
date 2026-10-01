@@ -108,7 +108,7 @@ export default function ForecastArchive() {
                       disabled={!enabled}
                       onClick={() => chooseDate(iso)}
                       aria-label={date.toLocaleDateString("pt-BR")}
-                      className={active ? "bg-forecast-accent text-forecast-foreground hover:bg-forecast-accent" : "text-forecast-foreground hover:bg-forecast-background disabled:text-forecast-muted/30"}
+                      className={active ? "bg-forecast-accent text-primary-foreground hover:bg-forecast-accent" : "text-forecast-foreground hover:bg-forecast-background disabled:text-forecast-muted/30"}
                     >
                       {index + 1}
                     </Button>
