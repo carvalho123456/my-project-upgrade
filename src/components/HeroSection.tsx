@@ -13,8 +13,9 @@ const themeMeta = {
 };
 
 const HeroSection = () => {
-  const { theme, label } = useWeatherTheme();
-  const { Icon, imgClass } = themeMeta[theme];
+  const { theme: visualTheme, autoTheme, autoLabel } = useWeatherTheme();
+  const { imgClass } = themeMeta[visualTheme];
+  const { Icon } = themeMeta[autoTheme];
 
   return (
     <section id="inicio" className="relative min-h-screen flex items-center overflow-hidden">
@@ -40,7 +41,7 @@ const HeroSection = () => {
         >
           <div className="inline-flex items-center gap-2 rounded-full bg-primary/20 border border-primary/30 px-4 py-1.5 mb-6">
             <Icon className="h-4 w-4 text-sky" />
-            <span className="text-sm font-medium text-sky">{label} • Caraguatatuba</span>
+            <span className="text-sm font-medium text-sky">{autoLabel} • Caraguatatuba</span>
           </div>
 
           <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
