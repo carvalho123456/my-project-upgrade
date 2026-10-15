@@ -19,8 +19,6 @@ const navItems = [
 ];
 
 
-const themeOrder: WeatherTheme[] = ["rainy", "cloudy", "pleasant", "sunny", "night"];
-
 const themeIcons: Record<WeatherTheme, typeof CloudRain> = {
   rainy: CloudRain,
   cloudy: Cloud,
