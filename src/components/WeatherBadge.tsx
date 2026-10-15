@@ -10,8 +10,8 @@ const iconMap = {
 } as const;
 
 const WeatherBadge = () => {
-  const { theme, label, temperature, loading } = useWeatherTheme();
-  const Icon = loading ? Loader2 : iconMap[theme];
+  const { autoTheme, autoLabel, temperature, loading } = useWeatherTheme();
+  const Icon = loading ? Loader2 : iconMap[autoTheme];
 
   return (
     <div className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/20 bg-primary-foreground/10 px-3 py-1.5 backdrop-blur-md">
