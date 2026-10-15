@@ -31,14 +31,8 @@ const themeIcons: Record<WeatherTheme, typeof CloudRain> = {
 
 const Header = () => {
   const [open, setOpen] = useState(false);
-  const { override, setOverride, autoTheme } = useWeatherTheme();
-  const currentTheme = override ?? autoTheme;
-  const ThemeIcon = themeIcons[currentTheme];
-
-  const cycleTheme = () => {
-    const nextIndex = (themeOrder.indexOf(currentTheme) + 1) % themeOrder.length;
-    setOverride(themeOrder[nextIndex]);
-  };
+  const { autoTheme } = useWeatherTheme();
+  const ThemeIcon = themeIcons[autoTheme];
 
   return (
     <motion.header
