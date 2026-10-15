@@ -41,13 +41,13 @@ const Header = () => {
       className="fixed top-0 left-0 right-0 z-50 bg-ocean-deep/90 backdrop-blur-md border-b border-ocean-mid/30"
     >
       <div className="container mx-auto flex items-center justify-between py-4 px-4">
-        <button
-          onClick={cycleTheme}
-          className="flex items-center gap-2 focus:outline-none"
-          aria-label="Mudar tema do clima"
+        <Link
+          to="/#inicio"
+          className="flex items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky rounded-lg"
+          aria-label="Ir para o início"
         >
           <motion.div
-            key={currentTheme}
+            key={autoTheme}
             initial={{ rotate: -90, opacity: 0 }}
             animate={{ rotate: 0, opacity: 1 }}
             transition={{ duration: 0.3 }}
@@ -57,7 +57,7 @@ const Header = () => {
           <span className="font-heading text-xl font-bold text-primary-foreground tracking-tight">
             Clima Caragua
           </span>
-        </button>
+        </Link>
 
         <nav className="hidden lg:flex items-center gap-5">
           {navItems.map((item) => (
