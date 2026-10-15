@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { ChevronDown, CloudRain, Sun, Cloud, Leaf, Moon } from "lucide-react";
 import heroImg from "@/assets/hero-caraguatatuba.jpg";
 import { useWeatherTheme } from "@/contexts/WeatherTheme";
+import { Link } from "@/lib/router-compat";
 
 const themeMeta = {
   rainy: { Icon: CloudRain, imgClass: "" },
@@ -69,14 +70,20 @@ const HeroSection = () => {
           </div>
         </motion.div>
 
-        <motion.div
-          initial={false}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 1 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        <Link
+          to="/previsao"
+          aria-label="Ver as previsões do tempo"
+          title="Ver as previsões do tempo"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 inline-flex rounded-full p-2 hover:bg-ocean-mid/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky"
         >
-          <ChevronDown className="h-8 w-8 text-sky animate-float" />
-        </motion.div>
+          <motion.div
+            initial={false}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.2, duration: 1 }}
+          >
+            <ChevronDown className="h-8 w-8 text-sky animate-float" />
+          </motion.div>
+        </Link>
       </div>
     </section>
   );
